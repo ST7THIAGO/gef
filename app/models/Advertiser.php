@@ -20,4 +20,10 @@ class Advertiser extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    // relacionamento com tabela ebook
+    public function ebook()
+    {
+        return $this->hasMany(Ebook::class, 'ebook_id');
+    }
 }
