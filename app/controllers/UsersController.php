@@ -17,5 +17,4 @@ class UsersController extends Controller
 
         render('index', ['errors' => [], 'success' => true]);
     }
-    
 }
