@@ -20,9 +20,10 @@ class CreateAdvertisers extends Database
                 $table->string('phone_number');
                 $table->string('company_address');
                 $table->string('cnpj')->unique();
-                $table->unsignedBigInteger('user_id');
-                $table->foreign('user_id')->on('users')->onDelete('cascade')->nullable(false);
+                $table->unsignedInteger('user_id');
+                $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->nullable(false);
                 $table->timestamps();
+                $table->index(['corporate_email', 'cnpj']);
             });
         endif;
 

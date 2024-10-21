@@ -24,9 +24,10 @@ class CreateEbooks extends Database
                 $table->string('cover');
                 $table->integer('quantity_ebook');
                 $table->float('price');
-                $table->unsignedBigInteger('advertiser_id');
-                $table->foreign('advertiser_id')->on('advertisers')->onDelete('cascade')->nullable(false);
+                $table->unsignedInteger('advertiser_id');
+                $table->foreign('advertiser_id')->references('id')->on('advertisers')->onDelete('cascade')->nullable(false);
                 $table->timestamps();
+                $table->index(['id', 'advertiser_id']);
             });
         endif;
 

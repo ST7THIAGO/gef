@@ -9,7 +9,12 @@ class User extends Model
      * @var array
      */
     protected $fillable = [
-        'fullname', 'email', 'password',
+        'fullname',
+        'email',
+        'password',
+        'cpf',
+        'address',
+        'phone_number'
     ];
 
     /**
@@ -17,7 +22,7 @@ class User extends Model
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password'
     ];
 
     /**
@@ -33,4 +38,13 @@ class User extends Model
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // mapeamento inverso da relação advertiser -> user
+    // aqui especificamos que um usuário pode ter vários
+    // advertisers. esse relacionamento usa o atributo
+    // user_id da tabela advertisers
+    public function advertisers()
+    {
+        return $this->hasMany(Advertiser::class, 'user_id');
+    }
 }

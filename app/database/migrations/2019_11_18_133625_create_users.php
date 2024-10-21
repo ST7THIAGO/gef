@@ -13,17 +13,18 @@ class CreateUsers extends Database
     public function up()
     {
         if (!static::$capsule::schema()->hasTable("users")):
-        	static::$capsule::schema()->create("users", function (Blueprint $table) {
+            static::$capsule::schema()->create("users", function (Blueprint $table) {
                 $table->increments('id');
-        		$table->string('fullname');
-        		$table->string('email')->unique();
+                $table->string('fullname');
+                $table->string('email')->unique();
                 $table->string('cpf')->unique();
                 $table->string('phone_number');
-        		$table->string('password');
-        		$table->timestamp('email_verified_at')->nullable();
-        		$table->string('address');
-        		$table->timestamps();
-        	});
+                $table->string('password');
+                $table->timestamp('email_verified_at')->nullable();
+                $table->string('address');
+                $table->timestamps();
+                $table->index(['email', 'cpf']);
+            });
         endif;
 
         /**
