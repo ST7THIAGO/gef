@@ -3,93 +3,131 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ _env('APP_NAME', 'My Leaf MVC App') }}</title>
-    <link rel="shortcut icon" href="https://leafphp.dev/logo-circle.png" type="image/x-icon">
-
-    {{-- assets() points to the public/assets folder --}}
-    <link rel="stylesheet" href="{{ assets('css/styles.css') }}">
-
-    {{--
-        You generally want to keep all your css and js in the public folder
-        unless you are using a bundler like vite. vite() looks for assets in
-        the app/views folder by default. You can uncomment the line below to
-        use vite.
-
-        Be sure to run `npm install` and then `npm run dev` or `npm run build` first.
-    --}}
-    {{-- {{ vite('css/app.css') }} --}}
-
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700;display=swap">
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="{{ assets('css/style.css') }}">
+    <title>Document</title>
 </head>
 
-<body class="flex center-all h-screen">
-    <div class="container">
-        <div class="mt-3">
-            <div class="flex center-start">
-                <img src="https://www.leafphp.dev/logo-circle.png" alt="">
-                <h4 style="font-size: 22px;">Welcome to Leaf <span class="green">3</span></h4>
+<body>
+    <header>
+        <a href="#">INÍCIO</a>
+        <a href="#anunciante">SEJA ANUNCIANTE</a>
+        <a href="#somos">QUEM SOMOS</a>
+    </header>
+    <div class="descricao">
+        <div class="esquerda-descricao">
+            <h1>GEMOLOGIA EM FOCO:</h1><span> A ARTE DE LAPIDAR-SE </span>
+            <div class="botoes">
+                <a href="#" id="comprar-botao-descricao">Comprar</a>
+                <a href="#" id="ver-mais-botao">Ver mais</a>
             </div>
-            <div class="flex card mt-3">
-                <div class="flex" style="width: calc(50% - 80px); padding: 30px;">
-                    <ion-icon name="book-outline"></ion-icon>
-                    <div class="ml-1">
-                        <h4>
-                            Leaf MVC Documentation
-                        </h4>
-                        <p class="mt-1">
-                            Leaf MVC comes with a clean and developer-friendly documentation for both beginners and
-                            seasoned users.
-                        </p>
-                        <a href="https://mvc.leafphp.dev/" target="_blank" rel="noopener">
-                            Leaf MVC Docs
-                        </a>
-                    </div>
-                </div>
-                <div class="flex" style="width: calc(50% - 80px); padding: 30px;">
-                    <ion-icon name="laptop-outline"></ion-icon>
-                    <div class="ml-1">
-                        <h4>
-                            Leaf Documentation
-                        </h4>
-                        <p class="mt-1">
-                            Since Skeleton is basically a boilerplate built with Leaf, we recommend checking out the
-                            leaf docs first.
-                        </p>
-                        <a href="https://leafphp.dev" target="_blank" rel="noopener">
-                            Leaf Docs
-                        </a>
-                    </div>
-                </div>
-                <div class="flex" style="width: calc(50% - 80px); padding: 30px;">
-                    <ion-icon name="logo-twitter"></ion-icon>
-                    <div class="ml-1">
-                        <h4>Twitter</h4>
-                        <p class="mt-1">
-                            Follow Leaf PHP on Twitter to get latest news about releases, new modules, tutorials
-                            and amazing tips.
-                        </p>
-                        <a href="https://twitter.com/leafphp" target="_blank" rel="noopener">@leafphp</a>
-                    </div>
-                </div>
-                <div class="flex" style="width: calc(50% - 80px); padding: 30px;">
-                    <ion-icon name="logo-youtube"></ion-icon>
-                    <div class="ml-1">
-                        <h4>YouTube</h4>
-                        <p class="mt-1">
-                            We have a youtube channel where we upload videos on leaf, our modules, frameworks and other
-                            projects.
-                        </p>
-                        <a href="https://www.youtube.com/channel/UCllE-GsYy10RkxBUK0HIffw" target="_blank"
-                            rel="noopener">Leaf YouTube Channel</a>
-                    </div>
-                </div>
+        </div>
+        <div class="direita-descricao">
+            <img src="{{ assets('img/EBOOK.png')}}" alt="Capa">
+        </div>
+    </div>
+    <div class="carrosel">
+        <div class="card-carrosel">
+            <div class="card"></div>
+            <div class="card"></div>
+            <div class="card"></div>
+            <div class="card"></div>
+            <div class="card"></div>
+            <div class="card"></div>
+            <div class="card"></div>
+            <div class="card"></div>
+            <div class="card"></div>
+        </div>
+        <a href="#anunciante">Anunciar</a>
+    </div>
+    <div class="sinopse">
+        <div class="esquerda-sinopse">
+            <img src="{{ assets('img/EBOOK.png')}}" alt="Sinopse">
+        </div>
+        <div class="direita-sinopse">
+            <h1>Sinopse</h1>
+            <p>"Gemologia em Foco: A Arte de Lapidar-se" não é apenas um guia sobre pedras preciosas, é um manual para
+                você lapidar a si mesmo. Nele, você encontrará lições motivacionais, utilizando a gemologia como
+                metáfora para o autodesenvolvimento, e os ensinamentos de Musashi Miyamoto para reforçar que, assim como
+                uma pedra bruta pode se tornar uma joia rara, você também pode se transformar em sua melhor versão.
+                Seja você um apaixonado por gemas ou alguém em busca de motivação e crescimento pessoal, "A Arte de
+                Lapidar-se" mostrará como transformar as pressões diárias em oportunidades.</p>
+            <div class="comprar-sinopse">
+                <a href="#" id="comprar-sinopse">Comprar</a>
             </div>
         </div>
     </div>
+    <div class="ser-anunciante" id="anunciante">
+        <?php
+            if ($errors && count($errors) > 0 ):
+                foreach($errors as $error):
+                    echo "<span class='error'>". $error ."</span>";
+                endforeach;
+            endif;
+
+            if ($success):
+                echo "<span class='success'>Salvo com successo!</span>";
+            endif;
+        ?>
+        <form id="form-anunciante" method="post" action="/">
+            <?php Leaf\Anchor\CSRF::form(); ?>
+
+            <div class="card">
+                <div class="titulo-anunciante">
+                    <h1>Ser Anunciante</h1>
+                </div>
+            
+                <div class="textfield">
+                    <div class="dados">
+                        <label for="nome">Nome:</label>
+                        <input type="text" name="name">
+                    </div>
+                    <div class="dados">
+                    <label for="nome">Email:</label>
+                    <input type="email" name="e-mail">
+                </div>
+                <div class="dados">
+                    <label for="nome">Telefone:</label>
+                    <input type="text">
+                </div>
+                <div class="dados">
+                    <label for="nome">Endereço:</label>
+                    <input type="text">
+                </div>
+            </div>
+            <div class="enviar-anunciante">
+                <a href="#">Enviar</a>
+            </div>
+        </div>
+    </form>
+    </div>
+    <div class="quem-somos" id="somos">
+        <h1>QUEM SOMOS?</h1>
+        <p>Na Gemologia em Foco, acreditamos que a verdadeira beleza e o valor de uma joia estão no seu processo de
+            lapidação, assim como o potencial de cada pessoa é revelado através do autoconhecimento e da disciplina.
+            <br>
+            <br>
+            Nosso propósito é mais do que compartilhar conhecimentos sobre gemas preciosas, queremos oferecer uma nova
+            perspectiva sobre autossuperação.
+            <br>
+            <br>
+            Assim como uma pedra bruta se torna uma joia valiosa, você também pode lapidar seu caminho rumo ao sucesso,
+            guiado pelos ensinamentos do lendário samurai Musashi Miyamoto e pelas lições de vida que ressoam
+            profundamente no processo de crescimento pessoal retratados no mangá Vagabond.
+            <br>
+            <br>
+            Com a união de nosso conhecimento técnico e uma visão inspiradora, nosso time é capaz de oferecer uma
+            jornada transformadora para quem busca conhecimento, crescimento pessoal e profissional.</p>
+    </div>
+    <footer>
+        <span>© 2024 | Gemologia em Foco</span>
+        <span>Fale conosco (yy)xxxxx-xxxx</span>
+    </footer>
 </body>
 
 </html>
