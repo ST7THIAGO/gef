@@ -308,3 +308,31 @@ footer {
 footer span {
     font-weight: 500;
 }
+
+.login-body {
+    background-color: #101029;
+    z-index: -1000px;
+}
+
+.login-logo {
+    height: 4.668rem;
+    width: auto;
+}
+
+
+.blur-background-form {
+    z-index: 200;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    background-color: transparent;
+    backdrop-filter: blur(5px);
+    display: flex;
+    flex-direction: colums;
+    align-items: center;
+    justify-content: center;
+}
+.login-header {
+    position: absolute;
+    top:0;
+}
