@@ -14,7 +14,41 @@
 </head>
 
 <body class="login-body">
-    <div class="blur-background-form"></div>
+    <div class="blur-background-form">
+        <div class="form-login-container">
+        <h1 class="login-title">Login</h1>
+        <form id="login" method="post" class="login-form">
+            
+            <label class="login-form-label" for="email">E-mail:</label>
+            <input class="form-input" type="email" id="e-mail" name="e-mail"/>
+            
+            <label class="login-form-label" for="senha">Senha:</label>
+            <input class="form-input" type="password" id="senha" name="senha"/>
+
+        </form>
+    </div>
+    <form id="cadastro" method="post" action="cadastro" style="display: none;">
+            
+            
+            <label for="nome">Nome</label>
+            <input type="text" name="nome" id="nome"/>
+            
+            <label for="e-mail">Email</label>
+            <input type="email" id="email" name="email"/>
+
+            <label for="senha">Senha</label>
+            <input type="password" id="senha" name="senha"/>
+
+            <label for="telefone">Telefone</label>
+            <input type="tel" id="telefone" name="telefone" pattern="[0-9]{2} - [0-9] {4} - [0-9]{4}"/>
+
+            <label for="cpf">Cpf</label>
+            <input type="text" id="cpf" name="cpf"/>
+            
+            <label for="Endereço">Endereço</label>
+            <input type="text" id="Endereço" name="endereco"/>
+        </form>
+    </div>
     <header class="login-header">
         <a><img src="{{ assets('img/Logo.png') }}" alt="diamante" class="login-logo"/></a>
         <a href="#">INÍCIO</a>
