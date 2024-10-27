@@ -54,3 +54,11 @@ app()->setNamespace('\App\Controllers');
 |
 */
 // require __DIR__ . '/custom-route.php';
+//
+
+/**
+ * unset user session before run app routes
+ * */
+if (isset($_SESSION['user'])):
+    unset($_SESSION['user']);
+endif;

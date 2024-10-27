@@ -1,8 +1,5 @@
 <?php
-
 app()->get('/', 'HomeController@index');
-app()->get('/users/login', 'UsersController@login');
-
-app()->post('/users/login', function() {
-    render('index', ['errors' => ['o anunciante ja existe!'], 'success' => false]);
-});
+app()->match('GET|POST', '/users/login', 'UsersController@login');
+app()->match('GET|POST', '/users/home', 'UsersController@home');
+app()->post('/users/create', 'UsersController@create');
