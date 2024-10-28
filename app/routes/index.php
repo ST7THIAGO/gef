@@ -38,7 +38,6 @@
 |
 */
 app()->setNamespace('\App\Controllers');
-
 /*
 |--------------------------------------------------------------------------
 | Your application routes
@@ -55,6 +54,10 @@ app()->setNamespace('\App\Controllers');
 */
 // require __DIR__ . '/custom-route.php';
 //
+
+app()->config('middleware', [
+    App\Middleware\AuthMiddleware::class
+]);
 
 /**
  * unset user session before run app routes

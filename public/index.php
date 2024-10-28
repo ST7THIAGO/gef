@@ -110,7 +110,12 @@ Leaf\Core::loadApplicationConfig();
 | them here. Simply uncomment the line below.
 |
 */
-// \Leaf\Core::loadLibs();
+\Leaf\Core::loadLibs();
+
+/**
+ * install devtools
+ * */
+\Leaf\DevTools::install();
 
 /*
 |--------------------------------------------------------------------------

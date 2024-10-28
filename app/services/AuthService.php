@@ -11,8 +11,13 @@ class AuthService
         return isset($_SESSION['user']);
     }
 
-    public function redirectTo(string $path)
+    public function setLoggedUser($user)
     {
-        return redirect($path);
+        $_SESSION['user'] = $user;
+    }
+
+    public function getLoggedUser()
+    {
+        return $_SESSION['user'];
     }
 }

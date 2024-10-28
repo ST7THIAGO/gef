@@ -18,6 +18,7 @@ class UsersController extends Controller
     {
         parent::__construct();
         $this->request = new Request;
+
         // servico de autenticacao de usuarios
         $this->authService = new AuthService;
     }
@@ -31,9 +32,11 @@ class UsersController extends Controller
     public function home()
     {
         // checa se o usuário está logado antes de direcionar
-        // para home
-        if (!$this->authService->isUserLoggedIn()) {
-            return $this->authService->redirectTo('/users/login/');
+        // para home (checagem feita em middleware/AuthMiddleware)
+        $isUserLogged = $this->request->next();
+
+        if (!$isUserLogged) {
+            return redirect('/users/login');
         }
 
         return render('home', ['errors' => [], 'success' => true]);
