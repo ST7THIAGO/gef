@@ -40,3 +40,15 @@ function enableBlur() {
     blurred.style.display = "flex";
 
 }
+
+
+function onRegisterUser(event) {
+    event.preventDefault();
+    const form = $('#cadastro').parsley();
+    const isValid = form.isValid();
+    console.log("form registro valido? " + isValid);
+    if (isValid) document.getElementById('cadastro').submit();
+    return false;
+}
+
+

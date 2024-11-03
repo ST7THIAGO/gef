@@ -9,8 +9,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
+    <script src="{{ assets('js/jquery.js')}}"></script>
+    <script src="{{ assets('js/parsley.js')}}"></script>
+    <script src="{{ assets('js/ptbr.js')}}"></script>
     <link rel="stylesheet" href="{{ assets('css/style.css') }}">
     <script type="text/javascript" src="{{ assets('js/app.js') }}"></script>
+
     <title>Login/Create</title>
 </head>
 
@@ -28,12 +32,12 @@
             <?php Leaf\Anchor\CSRF::form(); ?>
 
             <label class="login-form-label" for="email">E-mail:</label>
-            <input class="form-input" type="email" id="e-mail" name="e-mail"/>
+            <input class="form-input" type="email" id="e-mail" name="e-mail" data-parsley-type="email" data-parsley-required="true"/>
 
             <label class="login-form-label" for="senha">Senha:</label>
-            <input class="form-input" type="password" id="senha" name="senha"/>
+            <input class="form-input" type="password" id="senha" name="senha" data-parsley-required="true" data-parsley-minlength="8" data-parsley-type="alphanum" />
 
-            <div class="button-container">
+            <div class="button-container" onclick="$('#login').submit();">
                 <input type="button" value="Entrar" class="login-button"/>
             </div>
 
@@ -41,38 +45,76 @@
                 Ainda não possui conta? <span class="register-user" onclick="switchForms()">CRIAR</span>
             </div>
 
+             <?php
+
+                if (is_iterable($errors)):
+                    foreach($errors as $err):
+                        $errors = json_decode($err);
+                        foreach($errors as $msg):
+                            echo "<li class='parsley-error'>" . $msg[0] ."</li>";
+                        endforeach;
+                    endforeach;
+                endif;
+
+                if ($success):
+                    echo "<span class='success'></span>";
+                endif;
+            ?>
+
         </form>
     </div>
         <div class="form-register-container" style="display: none;">
         <span class="close-blur" onclick="closeBlur()">X</span>
 
-        <form id="cadastro" method="post" action="/users/create">
+         <h1 class="login-title">CRIANDO UMA CONTA</h1>
+        <form id="cadastro" method="post" action="/users/create" onsubmit="onRegisterUser(event);">
 
             <?php Leaf\Anchor\CSRF::form(); ?>
 
-            <label for="register-nome">Nome</label>
-            <input type="text" name="register-nome" id="register-nome"/>
+            <label class="login-form-label" for="register-nome">Nome</label>
+            <input class="form-input" type="text" name="register-nome" id="register-nome" data-parsley-required="true" data-parsley-length="[5, 200]"/>
 
-            <label for="register-email">Email</label>
-            <input type="email" id="register-email" name="register-email"/>
+            <label class="login-form-label" for="register-email">Email</label>
+            <input class="form-input" type="email" data-parsley-type="email" id="register-email" name="register-email" required="true"/>
 
-            <label for="register-senha">Senha</label>
-            <input type="password" id="register-senha" name="register-senha"/>
+            <label class="login-form-label"  for="register-senha">Senha</label>
+            <input class="form-input"  type="password" id="register-senha" name="register-senha" data-parsley-minlength="8" required="true"/>
 
-            <label for="register-telefone">Telefone</label>
-            <input type="tel" id="telefone" name="register-telefone" pattern="[0-9]{2} - [0-9] {4} - [0-9]{4}"/>
+            <label class="login-form-label" for="register-telefone">Telefone</label>
+            <input class="form-input" type="tel" id="telefone" name="register-telefone" data-parsley-type="digits" required="true"/>
 
-            <label for="register-cpf">Cpf</label>
-            <input type="text" id="register-cpf" name="register-cpf"/>
+            <label class="login-form-label"  for="register-cpf">Cpf</label>
+            <input class="form-input"  type="text" id="register-cpf" name="register-cpf" required="true" data-parsley-minlength="11"/>
 
-            <label for="register-endereco">Endereço</label>
-            <input type="text" id="register-endereco" name="register-endereco"/>
+            <label class="login-form-label" for="register-endereco">Endereço</label>
+            <input class="form-input" type="text" id="register-endereco" name="register-endereco" required="true" data-parsley-length="[4, 200]" />
 
-            <div class="register-question">
+            <div class="button-container" style="margin-bottom: 8px;" onclick="$('#cadastro').submit();">
+                <input type="submit" value="CRIAR CONTA" class="login-button"/>
+            </div>
+
+            <div class="register-question" style="margin-bottom: 12px;">
                 Já possui conta? <span class="register-user" onclick="switchForms()">Logar</span>
             </div>
 
+              <?php
+
+                if (is_iterable($errors)):
+                    foreach($errors as $err):
+                        $errors = json_decode($err);
+                        foreach($errors as $msg):
+                            echo "<li class='parsley-error'>" . $msg[0] ."</li>";
+                        endforeach;
+                    endforeach;
+                endif;
+
+                if ($success):
+                    echo "<span class='success'></span>";
+                endif;
+            ?>
+
         </form>
+
         </div>
     </div>
     <header class="login-header">
@@ -94,17 +136,6 @@
         </div>
     </div>
 
-        <?php
-            if ($errors && count($errors) > 0 ):
-                foreach($errors as $error):
-                    echo "<span class='error'>". $error ."</span>";
-                endforeach;
-            endif;
-
-            if ($success):
-                echo "<span class='success'></span>";
-            endif;
-        ?>
 
 
 </body>

@@ -361,6 +361,15 @@ footer span {
     padding: 12px;
     border: 1px solid #7F7FFC;
     display: block;
+    overflow-y: auto;
+}
+
+.form-register-container::-webkit-scrollbar {
+    width: 12px;
+    border: 1px solid #090915;
+    background-color: #ffffff;
+    border-radius: 4px;
+    padding: 2px;
 }
 
 .login-title {
@@ -404,6 +413,7 @@ footer span {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 }
 
 .login-button {
@@ -413,6 +423,7 @@ footer span {
     border-radius: 15px;
     color: #3939A4;
     font-size: 15px;
+    cursor: pointer;
 }
 
 .register-question {
@@ -449,4 +460,15 @@ footer span {
     top: 20px;
     right: 20px;
     cursor: pointer
+}
+
+li[class^="parsley-"] {
+    font-size: 12px !important;
+    color: indianred !important;
+}
+
+.parsley-error {
+    font-size: 12px !important;
+    color: indianred !important;
+    text-align: center;
 }
