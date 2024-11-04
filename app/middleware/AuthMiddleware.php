@@ -10,7 +10,6 @@ use Leaf\DevTools;
 use App\Services\AuthService;
 
 /**
- * @property function $next
  * */
 class AuthMiddleware extends Middleware
 {

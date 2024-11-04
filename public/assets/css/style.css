@@ -346,6 +346,15 @@ footer span {
     align-items: center;
     border-radius: 0.938rem;
     padding: 1.5rem;
+    overflow-y: auto;
+}
+
+.form-register-container::-webkit-scrollbar {
+    width: 12px;
+    border: 1px solid #090915;
+    background-color: #ffffff;
+    border-radius: 4px;
+    padding: 2px;
 }
 .login-title {
     width: 100%;
@@ -375,4 +384,72 @@ footer span {
 .login-form {
     width: 100%;
     background-color: transparent;   
+}
+
+.button-container {
+    width: 100%;
+    padding: 8px;
+    margin-top: 64px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.login-button {
+    padding: 10px;
+    border: 1px solid #ffffff;
+    background-color: #ffffff;
+    border-radius: 15px;
+    color: #3939A4;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.register-question {
+    width: 100%;
+    color: #ffffff !important;
+    font-size: 12px;
+    text-align: center;
+    margin-top: 4px;
+}
+
+.register-user {
+    color: #7F7FFC;
+    cursor: pointer;
+}
+
+.no-script {
+    color: #ffffff;
+    font-size: 12px;
+    text-align: center;
+}
+
+.close-blur {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border: 1px solid #121223;
+    background-color: #ffffff;
+    color: #121223;
+    border-radius: 100%;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer
+}
+
+li[class^="parsley-"] {
+    font-size: 12px !important;
+    color: indianred !important;
+}
+
+.parsley-error {
+    font-size: 12px !important;
+    color: indianred !important;
+    text-align: center;
 }
