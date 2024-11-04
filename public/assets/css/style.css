@@ -346,7 +346,6 @@ footer span {
     align-items: center;
     border-radius: 0.938rem;
     padding: 1.5rem;
-    overflow-y: auto;
 }
 
 .form-register-container::-webkit-scrollbar {
@@ -355,6 +354,20 @@ footer span {
     background-color: #ffffff;
     border-radius: 4px;
     padding: 2px;
+}
+.form-register-container {
+    width: 33.333%;
+    max-height: 700px;
+    background-color: #121223;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 15px;
+    padding: 12px;
+    border: 1px solid #7F7FFC;
+    display: block;
+    overflow-y: auto;
+    overflow-x:hidden;
 }
 .login-title {
     width: 100%;
