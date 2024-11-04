@@ -15,7 +15,7 @@ html {
 
 header {
     position: fixed;
-    height: 102px;
+    height: 6.375rem;
     width: 100%;
     display: flex;
     align-items: center;
@@ -24,12 +24,12 @@ header {
 }
 
 header a {
-    color: #ffffff;
+    color:  #ffffff;
 }
 
 .descricao {
-    padding: 0 50px;
-    height: 612px;
+    padding: 0 3.125rem;
+    height: 38.25rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -45,37 +45,37 @@ header a {
 }
 
 .esquerda-descricao {
-    padding: 0 70px;
+    padding: 0 4.375rem;
     display: flex;
     flex-direction: column;
     font-weight: 600;
 }
 
 .esquerda-descricao h1 {
-    font-size: 42px;
+    font-size: 2.625rem;
 }
 
 .esquerda-descricao span {
-    font-size: 34px;
+    font-size: 2.125rem;
 }
 
-.esquerda-descricao a {
+.esquerda-descricao a{
     color: #ffffff;
 }
 
 .botoes {
-    margin: 30px 0 0 0;
+    margin: 1.875rem 0 0 0;
     display: flex;
-    gap: 50px;
+    gap: 3.125rem;
 }
 
 #comprar-botao-descricao {
-    height: 48px;
-    width: 155px;
+    height: 3rem;
+    width: 9.688rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 29px;
+    border-radius: 1.813rem;
     background-color: #3939A4;
 }
 
@@ -86,13 +86,13 @@ header a {
 }
 
 #ver-mais-botao {
-    height: 48px;
-    width: 115px;
+    height: 3rem;
+    width: 0.938rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 29px;
-    border: 1px solid #ffffff;
+    border-radius: 1.813rem;
+    border: 0.063rem solid #ffffff;
 }
 
 #ver-mais-botao:hover {
@@ -101,7 +101,7 @@ header a {
 }
 
 .direita-descricao {
-    padding: 0 70px;
+    padding: 0 4.375rem;
 }
 
 .botoes {
@@ -113,7 +113,7 @@ header a {
 }
 
 .carrosel {
-    height: 204px;
+    height: 12.75rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -121,26 +121,26 @@ header a {
 }
 
 .card-carrosel {
-    margin: 31px 0 0 0;
+    margin: 1.938rem 0 0 0;
     display: flex;
-    gap: 70px;
+    gap: 4.375rem;
 }
 
 .carrosel .card {
-    height: 102px;
-    width: 79px;
-    border: 1px solid red;
+    height: 6.375rem;
+    width: 4.938rem;
+    border: 0.063rem solid red;
 }
 
 .carrosel a {
-    margin: 40px 0 0 0;
-    height: 25px;
-    width: 86px;
+    margin: 2.5rem 0 0 0;
+    height: 1.563rem;
+    width: 5.375rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 12px;
-    border-radius: 29px;
+    font-size: 0.75rem;
+    border-radius: 1.813rem;
     color: #ffffff;
     background-color: #5F5FB9;
 }
@@ -151,8 +151,8 @@ header a {
 }
 
 .sinopse {
-    padding: 0 50px;
-    height: 612px;
+    padding: 0 3.125rem;
+    height: 38.25rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -161,19 +161,19 @@ header a {
 }
 
 .esquerda-sinopse {
-    padding: 0 70px;
+    padding: 0 4.375rem;
 }
 
 .direita-sinopse {
-    padding: 0 70px;
+    padding: 0 4.375rem;
 }
 
 .direita-sinopse h1 {
-    margin: 0 0 70px 0;
+    margin: 0 0 4.375rem 0;
 }
 
 .direita-sinopse p {
-    margin: 0 0 70px 0;
+    margin: 0 0 4.375rem 0;
     font-weight: 500;
 }
 
@@ -184,9 +184,9 @@ header a {
 }
 
 #comprar-sinopse {
-    padding: 15px 20px 15px 20px;
+    padding: 0.938rem 1.25rem 0.938rem 1.25rem;
     font-weight: 700;
-    border-radius: 29px;
+    border-radius: 1.813rem;
     color: #ffffff;
     background-color: #35A2D0;
 }
@@ -198,7 +198,7 @@ header a {
 }
 
 .ser-anunciante {
-    height: 612px;
+    height: 38.25rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -206,7 +206,7 @@ header a {
 }
 
 .titulo-anunciante {
-    margin: 0 0 20px 0;
+    margin:  0 0 1.25rem 0;
     text-align: center;
 }
 
@@ -215,12 +215,12 @@ header a {
 }
 
 .ser-anunciante .card {
-    height: 503px;
-    width: 375px;
+    height: 31.438rem;
+    width: 23.438rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    border-radius: 15px;
+    border-radius: 0.938rem;
     background-color: #121223;
 }
 
@@ -229,7 +229,7 @@ header a {
     display: flex;
     flex-direction: column;
     align-self: center;
-    gap: 30px;
+    gap: 1.875rem;
 }
 
 .textfield label {
@@ -237,34 +237,34 @@ header a {
 }
 
 .textfield input {
-    padding: 0 0 10px 10px;
+    padding: 0 0 0.625rem 0.625rem;
     background-color: transparent;
     font-weight: 500;
     border: none;
     color: #ffffff;
-    border-bottom: 1px solid #ffffff;
+    border-bottom: 0.063rem solid #ffffff;
 }
 
 .textfield .dados {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 1.25rem;
 }
 
 .enviar-anunciante {
-    margin: 30px 20px 0 0;
+    margin: 1.875rem 1.25rem 0 0;
     display: flex;
     align-items: end;
     justify-content: end;
 }
 
 .enviar-anunciante a {
-    height: 28px;
-    width: 76px;
+    height: 1.75rem;
+    width: 4.75rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 36px;
+    border-radius: 2.25rem;
     color: #3939A4;
     background-color: #ffffff;
 }
@@ -276,8 +276,8 @@ header a {
 }
 
 .quem-somos {
-    padding: 0 92px;
-    height: 348px;
+    padding: 0 5.75rem;
+    height: 21.75rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -287,7 +287,7 @@ header a {
 }
 
 .quem-somos h1 {
-    margin: 0 0 40px 0;
+    margin: 0 0 2.5rem 0;
     font-weight: 600;
 }
 
@@ -296,7 +296,7 @@ header a {
 }
 
 footer {
-    height: 137px;
+    height: 8.563rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -311,7 +311,7 @@ footer span {
 
 .login-body {
     background-color: #101029;
-    z-index: -1000px;
+    z-index: -62.5rem;
 }
 
 .login-logo {
@@ -326,127 +326,53 @@ footer span {
     height: 100vh;
     position: absolute;
     background-color: transparent;
-    backdrop-filter: blur(5px);
-    display: none;
+    backdrop-filter: blur(0.313rem);
+    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
-
 .login-header {
     position: absolute;
-    top: 0;
+    top:0;
 }
 
 .form-login-container {
     width: 33.333%;
-    min-height: 465px;
+    min-height: 29.063rem;
     background-color: #121223;
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-radius: 15px;
-    padding: 12px;
-    border: 1px solid #7F7FFC;
+    border-radius: 0.938rem;
+    padding: 1.5rem;
 }
-
-.form-register-container {
-    width: 33.333%;
-    max-height: 700px;
-    background-color: #121223;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border-radius: 15px;
-    padding: 12px;
-    border: 1px solid #7F7FFC;
-    display: block;
-}
-
 .login-title {
     width: 100%;
     height: auto;
     text-align: center;
     color: #ffffff;
     text-transform: uppercase;
-    margin-bottom: 30px;
+    margin: 1.875rem;
 }
-
 .login-form-label {
     color: #ffffff;
-    font-size: 15px;
+    font-size: 0.938rem;
     width: 100% !important;
-    margin: 4px;
+    margin: 0.25rem;
     display: block;
-    margin-bottom: 32px;
-    margin-top: 24px;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
 }
-
 .form-input {
     width: 100%;
     border: none;
-    border-bottom: 2px solid #ffffff !important;
+    border-bottom: 0.125rem solid #ffffff !important;
     background-color: transparent !important;
-    padding: 2px;
+    padding: 0.125rem;
     color: #ffffff;
 }
-
 .login-form {
     width: 100%;
-    background-color: transparent;
-}
-
-.button-container {
-    width: 100%;
-    padding: 8px;
-    margin-top: 64px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.login-button {
-    padding: 10px;
-    border: 1px solid #ffffff;
-    background-color: #ffffff;
-    border-radius: 15px;
-    color: #3939A4;
-    font-size: 15px;
-}
-
-.register-question {
-    width: 100%;
-    color: #ffffff !important;
-    font-size: 12px;
-    text-align: center;
-    margin-top: 4px;
-}
-
-.register-user {
-    color: #7F7FFC;
-    cursor: pointer;
-}
-
-.no-script {
-    color: #ffffff;
-    font-size: 12px;
-    text-align: center;
-}
-
-.close-blur {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-    border: 1px solid #121223;
-    background-color: #ffffff;
-    color: #121223;
-    border-radius: 100%;
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    cursor: pointer
+    background-color: transparent;   
 }
