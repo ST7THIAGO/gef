@@ -48,7 +48,15 @@ function onRegisterUser(event) {
     const isValid = form.isValid();
     console.log("form registro valido? " + isValid);
     if (isValid) document.getElementById('cadastro').submit();
-    return false;
+    return false;    
 }
 
+function handleLogin(event) {
+    event.preventDefault(); // não acione o servidor com uma requisicao
+    const form = $('#login').parsley(); // instancia via jquey a classe parsley responsavel pela validacao
+    const isValid = form.isValid(); // checa se os dados do form estão de acordo com os critérios de validacao
+    console.log("form de login valido? " + isValid);
+    if (isValid) document.getElementById('login').submit(); // submit manual
+    return false;
+}
 

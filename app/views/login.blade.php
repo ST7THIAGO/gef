@@ -28,7 +28,7 @@
         <div class="form-login-container">
         <h1 class="login-title">Login</h1>
         <span class="close-blur" onclick="closeBlur()">X</span>
-        <form id="login" method="post" class="login-form">
+        <form id="login" method="post" class="login-form" onsubmit="handleLogin(event);">
             <?php Leaf\Anchor\CSRF::form(); ?>
 
             <label class="login-form-label" for="email">E-mail:</label>
@@ -38,7 +38,7 @@
             <input class="form-input" type="password" id="senha" name="senha" data-parsley-required="true" data-parsley-minlength="8" data-parsley-type="alphanum" />
 
             <div class="button-container" onclick="$('#login').submit();">
-                <input type="button" value="Entrar" class="login-button"/>
+                <input type="submit" value="Entrar" class="login-button"/>
             </div>
 
             <div class="register-question">
@@ -47,18 +47,16 @@
 
              <?php
 
-                if (is_iterable($errors)):
-                    foreach($errors as $err):
-                        $errors = json_decode($err);
-                        foreach($errors as $msg):
-                            echo "<li class='parsley-error'>" . $msg[0] ."</li>";
-                        endforeach;
+                if (isset($loginErrors) && is_iterable($loginErrors)):
+                    foreach($loginErrors as $err):
+                        if (isset($err)):
+                            $errors = json_decode($err);
+                            foreach($errors as $msg):
+                                echo "<li class='parsley-error'>" . $msg[0] ."</li>";
+                            endforeach;
+                        endif;
                     endforeach;
-                endif;
-
-                if ($success):
-                    echo "<span class='success'></span>";
-                endif;
+                endif;               
             ?>
 
         </form>
@@ -99,18 +97,16 @@
 
               <?php
 
-                if (is_iterable($errors)):
-                    foreach($errors as $err):
-                        $errors = json_decode($err);
-                        foreach($errors as $msg):
-                            echo "<li class='parsley-error'>" . $msg[0] ."</li>";
-                        endforeach;
+                if (isset($registerErrors) && is_iterable($registerErrors)):
+                    foreach($registerErrors as $err):
+                        if (isset($err)):
+                            $errors = json_decode($err);
+                            foreach($errors as $msg):
+                                echo "<li class='parsley-error'>" . $msg[0] ."</li>";
+                            endforeach;
+                        endif;
                     endforeach;
-                endif;
-
-                if ($success):
-                    echo "<span class='success'></span>";
-                endif;
+                endif;           
             ?>
 
         </form>

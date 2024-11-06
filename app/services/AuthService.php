@@ -20,4 +20,9 @@ class AuthService
     {
         return $_SESSION['user'];
     }
+
+    public function logout()
+    {
+        unset($_SESSION['user']);
+    }
 }

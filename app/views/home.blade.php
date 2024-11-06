@@ -62,18 +62,7 @@
             </div>
         </div>
     </div>
-    <div class="ser-anunciante" id="anunciante">
-        <?php
-            if ($errors && count($errors) > 0 ):
-                foreach($errors as $error):
-                    echo "<span class='error'>". $error ."</span>";
-                endforeach;
-            endif;
-
-            if ($success):
-                echo "<span class='success'>Salvo com successo!</span>";
-            endif;
-        ?>
+    <div class="ser-anunciante" id="anunciante">        
         <form id="form-anunciante" method="post" action="/">
             <?php Leaf\Anchor\CSRF::form(); ?>
 
