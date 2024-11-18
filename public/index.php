@@ -130,6 +130,6 @@ Leaf\Core::loadApplicationConfig();
 /***
  * reseta variavel de sessao de usuario
  */
-//if (isset($_SESSION['user'])):
-//    unset($_SESSION['user']);
-//endif;
+if (isset($_SESSION['user'])):
+   unset($_SESSION['user']);
+endif;

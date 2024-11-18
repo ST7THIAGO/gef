@@ -81,13 +81,14 @@ class UsersController extends Controller
         // checa se o usuário está logado antes de direcionar
         // para home (checagem feita em middleware/AuthMiddleware)
         $isUserLogged = $this->authService->getUser();
-       
+        
         if (is_null($isUserLogged)) {
             DevTools::console("caiu no if");
             Form::addError('Message', 'Usuário não encontrado!');
             return redirect('/users/login', ['loginErrors' => [json_encode(Form::errors())]]);
         }
         DevTools::console("fora do if");
+        DevTools::console($isUserLogged);
         render('home');
     }
 

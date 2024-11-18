@@ -37,10 +37,19 @@ class AuthService
     public function logout()
     {
         if (session()->has('user')):
-            session()->unset('user');
+            session()->unset('user');            
             auth()->logout();
             session()->destroy();
         endif;
+
+        if (isset($_SESSION['user'])):
+            unset($_SESSION['user']);
+        endif;
+        
+        session()->set('user', null);
+        session_destroy();
+        header('Location: /users/login'); 
+        exit();
     }
 
     public function login($user): bool
