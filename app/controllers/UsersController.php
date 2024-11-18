@@ -9,6 +9,9 @@ use Leaf\Form;
 use Leaf\Helpers\Password;
 use \App\Models\User;
 use DateTime;
+use Exception;
+use Leaf\Auth;
+use Leaf\Http\Response;
 
 /**
  * @property Leaf\Http\Request $request
@@ -31,7 +34,6 @@ class UsersController extends Controller
 
         // servico de autenticacao de usuarios
         $this->authService = new AuthService;
-
     }
 
     public function login()
@@ -39,64 +41,58 @@ class UsersController extends Controller
         $method = $this->request->getMethod();
 
         if ($method == "POST"):
-            
+
             $isValid = $this->request->validate([
                 'e-mail' => 'email|required',
                 'senha' => 'min:8|required'
             ]);
 
-            DevTools::console("login valido? " . json_encode($isValid));
-
-            if (!$isValid): 
-                $errors = $this->request->errors();            
+            if (!$isValid):
+                $errors = $this->request->errors();
                 return render('login', ['loginErrors' => [json_encode($errors)]]);
             endif;
-            
+
             $email = $this->request->get("e-mail");
             $password = $this->request->get("senha");
 
-            DevTools::console($email);
-            DevTools::console($password);
-
             $user = User::where('email', $email)->first();
 
-            DevTools::console('usuário encontrado? ', $user ? 'sim' : 'não');
+            $isPasswordValid = Password::verify($password, $user->password);
 
-            if (!$user):
+            if (!$user || !$isPasswordValid):
                 Form::addError("message", "Senha ou email inválido!");
                 return render('login', [
-                    'loginErrors' => [json_encode(Form::errors())],                    
+                    'loginErrors' => [json_encode(Form::errors())],
                 ]);
             endif;
-            
+
+            $user->password = $password;
+            $this->authService->login($user);
             $this->authService->setLoggedUser($user);
-
-            DevTools::console('usuário logado? ' . $this->authService->getLoggedUser() ? 'sim' : 'não');
-
-            return render('home', ['homeErrors' => []]);
+            return render('home');
         endif;
 
-        // chama a página de login
-        render('login', ['loginErrors' => []]);
+        // chama a página de login no method get
+        return render('login', ['loginErrors' => []]);
     }
 
     public function home()
     {
         // checa se o usuário está logado antes de direcionar
         // para home (checagem feita em middleware/AuthMiddleware)
-        $isUserLogged = $this->request->next();
-        $isUserSetted = $this->authService->getLoggedUser();
-
-        if (!$isUserLogged && !$isUserSetted) {
-            return redirect('/users/login', ['loginErrors' => []]);
+        $isUserLogged = $this->authService->getUser();
+        echo var_dump($isUserLogged);
+        if (is_null($isUserLogged)) {
+            DevTools::console("caiu no if");
+            Form::addError('Message', 'Usuário não encontrado!');
+            return redirect('/users/login', ['loginErrors' => [json_encode(Form::errors())]]);
         }
-
-        return render('home', ['homeErrors' => [], 'success' => true]);
+        DevTools::console("fora do if");
+        render('home');
     }
 
     public function create()
     {
-       
 
         $isValid = $this->request->validate([
             'register-nome' => 'text|required',
@@ -106,8 +102,6 @@ class UsersController extends Controller
             'register-cpf' => 'required',
             'register-endereco' => 'required'
         ]);
-
-        DevTools::console("form valido " . json_encode($isValid));
 
         if (!$isValid):
             $errors = $this->request->errors();
@@ -128,9 +122,8 @@ class UsersController extends Controller
             DevTools::console("usuario ja existe no banco de dados");
             Form::addError("message", "usuário já cadastrado!");
             return render('login', [
-                'registerErrors' => [json_encode(Form::errors())],                
+                'registerErrors' => [json_encode(Form::errors())],
             ]);
-
         endif;
 
         $user->fullname = $this->request->get('register-nome');
@@ -143,11 +136,22 @@ class UsersController extends Controller
         $user->save();
 
         if ($user):
+            $this->authService->login($user);
             $this->authService->setLoggedUser($user);
             return redirect('/users/home', ['homeErrors' => []]);
         endif;
 
-
         return render('login', ['loginErrors' => []]);
+    }
+
+    public function logout()
+    {
+        try {
+            $this->authService->logout();
+            return redirect('/users/login', ['loginErrors' => []]);
+        } catch (Exception $e) {
+            DevTools::console("Erro " . json_encode($e));
+            return null;
+        }
     }
 }

@@ -98,7 +98,7 @@ Leaf\Core::loadApplicationConfig();
 | **Uncomment the line below to use Leaf Db**
 | **You don't need this line to use Leaf Auth**
 */
-// \Leaf\Database::initDb();
+\Leaf\Database::initDb();
 
 /*
 |--------------------------------------------------------------------------
@@ -130,6 +130,6 @@ Leaf\Core::loadApplicationConfig();
 /***
  * reseta variavel de sessao de usuario
  */
-if (isset($_SESSION['user'])):
-    unset($_SESSION['user']);
-endif;
+//if (isset($_SESSION['user'])):
+//    unset($_SESSION['user']);
+//endif;

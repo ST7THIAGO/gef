@@ -56,7 +56,7 @@
                             endforeach;
                         endif;
                     endforeach;
-                endif;               
+                endif;
             ?>
 
         </form>
@@ -106,7 +106,7 @@
                             endforeach;
                         endif;
                     endforeach;
-                endif;           
+                endif;
             ?>
 
         </form>
@@ -115,9 +115,9 @@
     </div>
     <header class="login-header">
         <a><img src="{{ assets('img/Logo.png') }}" alt="diamante" class="login-logo"/></a>
-        <a href="#">INÍCIO</a>
-        <a href="#anunciante">SEJA ANUNCIANTE</a>
-        <a href="#somos">QUEM SOMOS</a>
+        <a href="#" onclick="enableBlur()">Início</a>
+        <a href="#anunciante" onclick="enableBlur()">SEJA ANUNCIANTE</a>
+        <a href="#somos" onclick="enableBlur()">QUEM SOMOS</a>
     </header>
     <div class="descricao">
         <div class="esquerda-descricao">

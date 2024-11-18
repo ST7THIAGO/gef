@@ -48,7 +48,7 @@ function onRegisterUser(event) {
     const isValid = form.isValid();
     console.log("form registro valido? " + isValid);
     if (isValid) document.getElementById('cadastro').submit();
-    return false;    
+    return false;
 }
 
 function handleLogin(event) {
@@ -60,3 +60,9 @@ function handleLogin(event) {
     return false;
 }
 
+function handleLogout(event) {
+    console.log(event)
+    event.preventDefault();
+    const form = document.getElementById('form-logout');
+    if (form) form.submit();
+}

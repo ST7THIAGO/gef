@@ -10,7 +10,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="{{ assets('css/style.css') }}">
-    <title>Document</title>
+    <title>Gef</title>
+    <script type="text/javascript" src="{{ assets('js/app.js') }}"></script>
 </head>
 
 <body>
@@ -18,6 +19,13 @@
         <a href="#">INÍCIO</a>
         <a href="#anunciante">SEJA ANUNCIANTE</a>
         <a href="#somos">QUEM SOMOS</a>
+        <a>
+            <form id="form-logout" method="post" action="/users/logout" class="logout-form" onclick="handleLogout(event);">
+                <?php Leaf\Anchor\CSRF::form(); ?>
+                <img src="{{ assets('img/user.png') }}" class="logout" alt="logout-img"/>
+                <span>Lougout</span>
+            </form>
+        </a>
     </header>
     <div class="descricao">
         <div class="esquerda-descricao">
@@ -62,7 +70,7 @@
             </div>
         </div>
     </div>
-    <div class="ser-anunciante" id="anunciante">        
+    <div class="ser-anunciante" id="anunciante">
         <form id="form-anunciante" method="post" action="/">
             <?php Leaf\Anchor\CSRF::form(); ?>
 
@@ -70,7 +78,7 @@
                 <div class="titulo-anunciante">
                     <h1>Ser Anunciante</h1>
                 </div>
-            
+
                 <div class="textfield">
                     <div class="dados">
                         <label for="nome">Nome:</label>
