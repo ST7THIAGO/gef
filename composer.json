@@ -40,7 +40,7 @@
         "leafs/devtools": "^0.1.0"
     },
     "require-dev": {
-        "fakerphp/faker": "^1.16"
+        "fakerphp/faker": "^1.24"
     },
     "autoload": {
         "psr-4": {

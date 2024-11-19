@@ -71,7 +71,7 @@
         </div>
     </div>
     <div class="ser-anunciante" id="anunciante">
-        <form id="form-anunciante" method="post" action="/">
+        <form id="form-anunciante" method="post" action="/users/home">
             <?php Leaf\Anchor\CSRF::form(); ?>
 
             <div class="card">
@@ -81,26 +81,38 @@
 
                 <div class="textfield">
                     <div class="dados">
-                        <label for="nome">Nome:</label>
-                        <input type="text" name="name">
+                        <label for="name">Nome:</label>
+                        <input id="name" type="text" name="nome">
                     </div>
                     <div class="dados">
-                    <label for="nome">Email:</label>
-                    <input type="email" name="e-mail">
+                    <label for="email">Email:</label>
+                    <input id="email" type="email" name="email">
                 </div>
                 <div class="dados">
-                    <label for="nome">Telefone:</label>
-                    <input type="text">
+                    <label for="telefone">Telefone:</label>
+                    <input id="telefone" type="text" name="telefone">
                 </div>
                 <div class="dados">
-                    <label for="nome">Endereço:</label>
-                    <input type="text">
+                    <label for="endereco">Endereço:</label>
+                    <input id="endereco" type="text" name="endereco">
                 </div>
             </div>
-            <div class="enviar-anunciante">
-                <a href="#">Enviar</a>
+            <div class="button-container" style="margin-bottom: 8px;" onclick="$('#form-anunciante').submit();">
+                <input type="submit" value="Enviar" class="login-button"/>
             </div>
         </div>
+        <?php
+            if (isset($homeErrors) && is_iterable($homeErrors)):
+                foreach($homeErrors as $err):
+                    if (isset($err)):
+                        $errors = json_decode($err);
+                        foreach($errors as $msg):
+                            echo "<li class='parsley-error'>" . $msg[0] ."</li>";
+                        endforeach;
+                    endif;
+                endforeach;
+            endif;
+        ?>
     </form>
     </div>
     <div class="quem-somos" id="somos">

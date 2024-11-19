@@ -12,6 +12,9 @@ use DateTime;
 use Exception;
 use Leaf\Auth;
 use Leaf\Http\Response;
+use \App\Models\Advertiser;
+use Faker\Provider\pt_BR\Company;
+use Faker\Factory as Faker;
 
 /**
  * @property Leaf\Http\Request $request
@@ -83,12 +86,58 @@ class UsersController extends Controller
         $isUserLogged = $this->authService->getUser();
         
         if (is_null($isUserLogged)) {
-            DevTools::console("caiu no if");
+            DevTools::console("usuário não encontrado");
             Form::addError('Message', 'Usuário não encontrado!');
             return redirect('/users/login', ['loginErrors' => [json_encode(Form::errors())]]);
         }
-        DevTools::console("fora do if");
+        
         DevTools::console($isUserLogged);
+
+        $method = $this->request->getMethod();
+
+        DevTools::console("Metodo ". $method);
+
+        if ($method == "POST"):
+            DevTools::console("caiu no post");
+            $isValid = $this->request->validate([
+                "nome" => "text|required",
+                "email" => "email|required",
+                "telefone" => "required",
+                "endereco" => "text|required"
+            ]);
+
+            $faker = Faker::create();
+            $cnpj = $faker->firstname;
+            
+            DevTools::console("cnpj ".$cnpj);
+
+            DevTools::console("form valido? ". $isValid ? "sim" : "nao");
+            DevTools::console("user_id ". $isUserLogged["id"]);
+
+            if (!$isValid):
+                $errors = $this->request->errors();
+                return render('home', ['homeErrors' => [json_encode($errors)]]);
+            endif;
+            
+            $existingAdvertiser = Advertiser::where('email', $this->request->get("email"))->first();
+
+            if ($existingAdvertiser):
+                Form::addError('Message', 'O anunciante já existe');    
+                return render('home', ['homeErrors' => [json_encode(Form::errors())]]);
+            endif;
+
+            $newAdvertiser = new Advertiser;
+
+            $newAdvertiser->company_name = $this->request->get("nome");
+            $newAdvertiser->corporate_email = $this->request->get("email");
+            $newAdvertiser->phone_number = $this->request->get("telefone");
+            $newAdvertiser->company_address = $this->request->get("endereco");
+            $newAdvertiser->cnpj = $cnpj;
+            $newAdvertiser->user_id = $isUserLogged->id;
+            $newAdvertiser->save();
+            return render('home');
+        endif;
+
         render('home');
     }
 
