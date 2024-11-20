@@ -52,7 +52,7 @@
                         if (isset($err)):
                             $errors = json_decode($err);
                             foreach($errors as $msg):
-                                echo "<li class='parsley-error'>" . $msg[0] ."</li>";
+                                echo "<li class='parsley-error center'>" . $msg[0] ."</li>";
                             endforeach;
                         endif;
                     endforeach;
@@ -70,7 +70,7 @@
             <?php Leaf\Anchor\CSRF::form(); ?>
 
             <label class="login-form-label" for="register-nome">Nome</label>
-            <input class="form-input" type="text" name="register-nome" id="register-nome" data-parsley-required="true" data-parsley-length="[5, 200]"/>
+            <input class="form-input" type="text" name="register-nome" id="register-nome" data-parsley-required="true" data-parsley-length="[5, 255]"/>
 
             <label class="login-form-label" for="register-email">Email</label>
             <input class="form-input" type="email" data-parsley-type="email" id="register-email" name="register-email" required="true"/>
@@ -85,7 +85,7 @@
             <input class="form-input"  type="text" id="register-cpf" name="register-cpf" required="true" data-parsley-minlength="11"/>
 
             <label class="login-form-label" for="register-endereco">Endereço</label>
-            <input class="form-input" type="text" id="register-endereco" name="register-endereco" required="true" data-parsley-length="[4, 200]" />
+            <input class="form-input" type="text" id="register-endereco" name="register-endereco" required="true" data-parsley-length="[4, 255]" />
 
             <div class="button-container" style="margin-bottom: 8px;" onclick="$('#cadastro').submit();">
                 <input type="submit" value="CRIAR CONTA" class="login-button"/>

@@ -37,9 +37,7 @@
         "leafs/auth": "*",
         "leafs/db": "*",
         "leafs/vite": "*",
-        "leafs/devtools": "^0.1.0"
-    },
-    "require-dev": {
+        "leafs/devtools": "^0.1.0",
         "fakerphp/faker": "^1.24"
     },
     "autoload": {

@@ -206,7 +206,7 @@ header a {
 }
 
 .ser-anunciante {
-    height: 38.25rem;
+    height: 50.25rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -223,13 +223,14 @@ header a {
 }
 
 .ser-anunciante .card {
-    height: 31.438rem;
+    height: auto;
     width: 23.438rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     border-radius: 0.938rem;
     background-color: #121223;
+    padding: 1.4rem;
 }
 
 .ser-anunciante .textfield {
@@ -482,7 +483,7 @@ li[class^="parsley-"] {
 .parsley-error {
     font-size: 12px !important;
     color: indianred !important;
-    text-align: center;
+    text-align: left;
 }
 
 .logout {
@@ -498,4 +499,10 @@ li[class^="parsley-"] {
     padding: 0.24rem;
     font-size: 0.5rem;
     cursor: pointer;
+}
+
+.center {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
 }

@@ -9,9 +9,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
+    <script src="{{ assets('js/jquery.js')}}"></script>
+    <script src="{{ assets('js/parsley.js')}}"></script>
+    <script src="{{ assets('js/ptbr.js')}}"></script>
     <link rel="stylesheet" href="{{ assets('css/style.css') }}">
-    <title>Gef</title>
     <script type="text/javascript" src="{{ assets('js/app.js') }}"></script>
+    <title>Gef</title>
 </head>
 
 <body>
@@ -71,7 +74,7 @@
         </div>
     </div>
     <div class="ser-anunciante" id="anunciante">
-        <form id="form-anunciante" method="post" action="/users/home">
+        <form id="form-anunciante" method="post" action="/users/home" onsubmit="onNewAdvertiser(event);">
             <?php Leaf\Anchor\CSRF::form(); ?>
 
             <div class="card">
@@ -82,37 +85,37 @@
                 <div class="textfield">
                     <div class="dados">
                         <label for="name">Nome:</label>
-                        <input id="name" type="text" name="nome">
+                        <input id="name" type="text" name="anunciante-nome" data-parsley-required="true" data-parsley-length="[5, 255]">
                     </div>
                     <div class="dados">
                     <label for="email">Email:</label>
-                    <input id="email" type="email" name="email">
+                    <input id="email" type="email" name="anunciante-email" data-parsley-type="email" data-parsley-required="true">
                 </div>
                 <div class="dados">
                     <label for="telefone">Telefone:</label>
-                    <input id="telefone" type="text" name="telefone">
+                    <input id="telefone" type="text" name="anunciante-telefone" data-parsley-type="digits" data-parsley-required="true">
                 </div>
                 <div class="dados">
                     <label for="endereco">Endereço:</label>
-                    <input id="endereco" type="text" name="endereco">
+                    <input id="endereco" type="text" name="anunciante-endereco" data-parsley-required="true" data-parsley-length="[4, 255]">
                 </div>
             </div>
             <div class="button-container" style="margin-bottom: 8px;" onclick="$('#form-anunciante').submit();">
                 <input type="submit" value="Enviar" class="login-button"/>
             </div>
-        </div>
-        <?php
-            if (isset($homeErrors) && is_iterable($homeErrors)):
-                foreach($homeErrors as $err):
-                    if (isset($err)):
-                        $errors = json_decode($err);
-                        foreach($errors as $msg):
-                            echo "<li class='parsley-error'>" . $msg[0] ."</li>";
+                <?php
+                    if (isset($homeErrors) && is_iterable($homeErrors)):
+                        foreach($homeErrors as $err):
+                            if (isset($err)):
+                                $errors = json_decode($err);
+                                foreach($errors as $msg):
+                                    echo "<li class='parsley-error center'>" . $msg[0] ."</li>";
+                                endforeach;
+                            endif;
                         endforeach;
                     endif;
-                endforeach;
-            endif;
-        ?>
+                ?>
+        </div>
     </form>
     </div>
     <div class="quem-somos" id="somos">

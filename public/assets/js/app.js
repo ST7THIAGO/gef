@@ -66,3 +66,16 @@ function handleLogout(event) {
     const form = document.getElementById('form-logout');
     if (form) form.submit();
 }
+
+function onNewAdvertiser(event) {
+    event.preventDefault();
+    const form = $("#form-anunciante").parsley();
+    const isValid = form.isValid();
+    if (isValid) document.getElementById('form-anunciante').submit();
+}
+
+$(document).ready(function() {
+    $("#telefone").on('input', function() {
+        this.value = this.value.replace(/[^0-9]/g, '');
+    });
+});

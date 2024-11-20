@@ -10,10 +10,7 @@ use Leaf\Helpers\Password;
 use \App\Models\User;
 use DateTime;
 use Exception;
-use Leaf\Auth;
-use Leaf\Http\Response;
 use \App\Models\Advertiser;
-use Faker\Provider\pt_BR\Company;
 use Faker\Factory as Faker;
 
 /**
@@ -23,31 +20,36 @@ use Faker\Factory as Faker;
 class UsersController extends Controller
 {
     protected AuthService $authService;
+    private Form $form;
 
     public function __construct()
     {
         parent::__construct();
         $this->request = new Request;
+        // servico de autenticacao de usuarios
+        $this->authService = new AuthService;
+        $this->form = new Form;
+    }
 
-        Form::message([
+    private function _changeFormValidation(): void
+    {
+        $this->form->message([
             'username' => 'O {field} deve contar apenas numeros e letras',
             'required' => 'O {field} é o obrigatório',
             'min:8' => 'O campo {field} deve possuir pelo menos 8 caracteres'
         ]);
-
-        // servico de autenticacao de usuarios
-        $this->authService = new AuthService;
     }
 
     public function login()
     {
         $method = $this->request->getMethod();
+        $this->_changeFormValidation();
 
         if ($method == "POST"):
 
             $isValid = $this->request->validate([
-                'e-mail' => 'email|required',
-                'senha' => 'min:8|required'
+                'e-mail' => 'email',
+                'senha' => 'min:8'
             ]);
 
             if (!$isValid):
@@ -63,9 +65,9 @@ class UsersController extends Controller
             $isPasswordValid = Password::verify($password, $user->password);
 
             if (!$user || !$isPasswordValid):
-                Form::addError("message", "Senha ou email inválido!");
+                $this->form->addError("message", "Senha ou email inválido!");
                 return render('login', [
-                    'loginErrors' => [json_encode(Form::errors())],
+                    'loginErrors' => [json_encode($this->form->errors())],
                 ]);
             endif;
 
@@ -84,56 +86,48 @@ class UsersController extends Controller
         // checa se o usuário está logado antes de direcionar
         // para home (checagem feita em middleware/AuthMiddleware)
         $isUserLogged = $this->authService->getUser();
-        
+        $this->_changeFormValidation();
+
         if (is_null($isUserLogged)) {
-            DevTools::console("usuário não encontrado");
-            Form::addError('Message', 'Usuário não encontrado!');
-            return redirect('/users/login', ['loginErrors' => [json_encode(Form::errors())]]);
+            DevTools::console("usuário não encontrado em home");
+            $this->form->addError('Message', 'Usuário não encontrado!');
+            return redirect('/users/login', ['loginErrors' => [json_encode($this->form->errors())]]);
         }
-        
-        DevTools::console($isUserLogged);
 
         $method = $this->request->getMethod();
 
-        DevTools::console("Metodo ". $method);
-
         if ($method == "POST"):
-            DevTools::console("caiu no post");
             $isValid = $this->request->validate([
-                "nome" => "text|required",
-                "email" => "email|required",
-                "telefone" => "required",
-                "endereco" => "text|required"
+                "anunciante-nome" => "string|max:255",
+                "anunciante-email" => "email",
+                "anunciante-telefone" => "phone",
+                "anunciante-endereco" => "string|max:255"
             ]);
 
-            $faker = Faker::create();
-            $cnpj = $faker->firstname;
-            
-            DevTools::console("cnpj ".$cnpj);
-
-            DevTools::console("form valido? ". $isValid ? "sim" : "nao");
-            DevTools::console("user_id ". $isUserLogged["id"]);
+            $faker = Faker::create("pt_BR");
+            $cnpj = (string)$faker->cnpj(true);
 
             if (!$isValid):
                 $errors = $this->request->errors();
                 return render('home', ['homeErrors' => [json_encode($errors)]]);
             endif;
-            
-            $existingAdvertiser = Advertiser::where('email', $this->request->get("email"))->first();
 
-            if ($existingAdvertiser):
-                Form::addError('Message', 'O anunciante já existe');    
-                return render('home', ['homeErrors' => [json_encode(Form::errors())]]);
+            $existingAdvertiser = Advertiser::where('corporate_email', $this->request->get("anunciante-email"))->first();
+
+            DevTools::console("usuario existente na base " . json_encode($existingAdvertiser));
+            if (isset($existingAdvertiser)):
+                $this->form->addError('Message', 'O anunciante já existe');
+                return render('home', ['homeErrors' => [json_encode($this->form->errors())]]);
             endif;
 
             $newAdvertiser = new Advertiser;
-
-            $newAdvertiser->company_name = $this->request->get("nome");
-            $newAdvertiser->corporate_email = $this->request->get("email");
-            $newAdvertiser->phone_number = $this->request->get("telefone");
-            $newAdvertiser->company_address = $this->request->get("endereco");
+            $newAdvertiser->company_name = (string)$this->request->get("anunciante-nome");
+            $newAdvertiser->corporate_email = (string)$this->request->get("anunciante-email");
+            $newAdvertiser->phone_number = (string)$this->request->get("anunciante-telefone");
+            $newAdvertiser->company_address = (string)$this->request->get("anunciante-endereco");
             $newAdvertiser->cnpj = $cnpj;
             $newAdvertiser->user_id = $isUserLogged->id;
+            DevTools::console("novo anunciante ". json_encode($newAdvertiser));
             $newAdvertiser->save();
             return render('home');
         endif;
@@ -143,12 +137,13 @@ class UsersController extends Controller
 
     public function create()
     {
+        $this->_changeFormValidation();
 
         $isValid = $this->request->validate([
-            'register-nome' => 'text|required',
-            'register-email' => 'email|required',
+            'register-nome' => 'text',
+            'register-email' => 'email',
             'register-senha' => 'min:8',
-            'register-telefone' => 'required',
+            'register-telefone' => 'phone',
             'register-cpf' => 'required',
             'register-endereco' => 'required'
         ]);
@@ -170,9 +165,9 @@ class UsersController extends Controller
 
         if ($existingUser):
             DevTools::console("usuario ja existe no banco de dados");
-            Form::addError("message", "usuário já cadastrado!");
+            $this->form->addError("message", "usuário já cadastrado!");
             return render('login', [
-                'registerErrors' => [json_encode(Form::errors())],
+                'registerErrors' => [json_encode($this->form->errors())],
             ]);
         endif;
 
