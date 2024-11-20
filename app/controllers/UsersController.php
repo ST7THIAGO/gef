@@ -36,7 +36,9 @@ class UsersController extends Controller
         $this->form->message([
             'username' => 'O {field} deve contar apenas numeros e letras',
             'required' => 'O {field} é o obrigatório',
-            'min:8' => 'O campo {field} deve possuir pelo menos 8 caracteres'
+            'min:8' => 'O campo {field} deve possuir pelo menos 8 caracteres',
+            'text' => 'O campo {field} deve conter apenas texto',
+            'max:255' => 'O campo {field} deve conter no máximo 255 caracteres'
         ]);
     }
 

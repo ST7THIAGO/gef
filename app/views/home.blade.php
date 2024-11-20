@@ -109,7 +109,7 @@
                             if (isset($err)):
                                 $errors = json_decode($err);
                                 foreach($errors as $msg):
-                                    echo "<li class='parsley-error center'>" . $msg[0] ."</li>";
+                                    echo "<li class='parsley-error center' id='error-messages'>" . $msg[0] ."</li>";
                                 endforeach;
                             endif;
                         endforeach;
